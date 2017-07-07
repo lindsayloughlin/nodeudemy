@@ -20,15 +20,12 @@ app.use((req, res, next) => {
     next();
 });
 
-
 // Middleware
 // app.use((req, res, next) => {
 //     res.render('maintenance.hbs');
 // });
 
 app.use(express.static(__dirname + '/public'));
-
-
 
 hbs.registerHelper('getCurrentYear', () => {
     return new Date().getFullYear();
@@ -53,8 +50,14 @@ app.get('/about', (req, res) => {
         errorMessage: 'Unable to handle request',
         pageTitle: 'Hello world'
     });
-})
-;
+});
+
+app.get('/projects', (req,res) => {
+    res.render('projects.hbs', {
+        pageTitle: 'Projects page',
+        myProject: 'best project ever'
+    });
+});
 
 //bad 
 app.get('/bad', (red, res) => {
